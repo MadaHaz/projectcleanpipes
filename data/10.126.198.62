@@ -1,0 +1,117 @@
+http://www.99kubo.tv/,200
+https://mrunlock.space/,HTTPSConnectionPool(host='mrunlock.space', port=443): Max retries exceeded with url: / (Caused by NewConnectionError('<urllib3.connection.HTTPSConnection object at 0x000001A450D4CA48>: Failed to establish a new connection: [WinError 10060] A connection attempt failed because the connected party did not properly respond after a period of time, or established connection failed because connected host has failed to respond'))
+http://mrunlock.red/,HTTPSConnectionPool(host='mrunlock.red', port=443): Max retries exceeded with url: / (Caused by SSLError(SSLError(1, '[SSL: WRONG_VERSION_NUMBER] wrong version number (_ssl.c:1076)')))
+http://nocensor.surf/,HTTPSConnectionPool(host='nocensor.surf', port=443): Max retries exceeded with url: / (Caused by SSLError(SSLError(1, '[SSL: WRONG_VERSION_NUMBER] wrong version number (_ssl.c:1076)')))
+https://nocensor.casa/,HTTPSConnectionPool(host='nocensor.casa', port=443): Max retries exceeded with url: / (Caused by SSLError(SSLCertVerificationError("hostname 'nocensor.casa' doesn't match either of '*.parkingcrew.net', 'parkingcrew.net'")))
+http://nocensor.fun/,200
+http://unblockproject.pw/,HTTPSConnectionPool(host='unblockproject.pw', port=443): Max retries exceeded with url: / (Caused by SSLError(SSLCertVerificationError("hostname 'unblockproject.pw' doesn't match either of '*.catched.com', 'catched.com'")))
+https://unblockproject.icu/,HTTPSConnectionPool(host='unblockproject.icu', port=443): Max retries exceeded with url: / (Caused by NewConnectionError('<urllib3.connection.HTTPSConnection object at 0x000001A450D5AA48>: Failed to establish a new connection: [Errno 11001] getaddrinfo failed'))
+https://unblockproject.info/,HTTPSConnectionPool(host='unblockproject.info', port=443): Max retries exceeded with url: / (Caused by SSLError(SSLError(1, '[SSL: WRONG_VERSION_NUMBER] wrong version number (_ssl.c:1076)')))
+http://123unblock.space/,HTTPSConnectionPool(host='123unblock.space', port=443): Max retries exceeded with url: / (Caused by SSLError(SSLCertVerificationError("hostname '123unblock.space' doesn't match either of '*.parkingcrew.net', 'parkingcrew.net'")))
+https://123unblock.fun/,200
+http://unbl0ck.online/,HTTPSConnectionPool(host='unbl0ck.online', port=443): Max retries exceeded with url: / (Caused by NewConnectionError('<urllib3.connection.HTTPSConnection object at 0x000001A450D4C908>: Failed to establish a new connection: [WinError 10060] A connection attempt failed because the connected party did not properly respond after a period of time, or established connection failed because connected host has failed to respond'))
+http://123unblock.icu/,HTTPSConnectionPool(host='123unblock.icu', port=443): Max retries exceeded with url: / (Caused by SSLError(SSLError(1, '[SSL: TLSV1_ALERT_INTERNAL_ERROR] tlsv1 alert internal error (_ssl.c:1076)')))
+http://prox4you.club/,HTTPSConnectionPool(host='prox4you.club', port=443): Max retries exceeded with url: / (Caused by SSLError(SSLError(1, '[SSL: WRONG_VERSION_NUMBER] wrong version number (_ssl.c:1076)')))
+https://prox4you.pro/,HTTPSConnectionPool(host='prox4you.pro', port=443): Max retries exceeded with url: / (Caused by NewConnectionError('<urllib3.connection.HTTPSConnection object at 0x000001A450D755C8>: Failed to establish a new connection: [WinError 10060] A connection attempt failed because the connected party did not properly respond after a period of time, or established connection failed because connected host has failed to respond'))
+http://prox4you.info/,HTTPSConnectionPool(host='prox4you.info', port=443): Max retries exceeded with url: / (Caused by SSLError(SSLError(1, '[SSL: WRONG_VERSION_NUMBER] wrong version number (_ssl.c:1076)')))
+https://unblocked.to/,403
+https://prostylex.org/,503
+https://torrents.io,HTTPSConnectionPool(host='torrents.io', port=443): Max retries exceeded with url: / (Caused by NewConnectionError('<urllib3.connection.HTTPSConnection object at 0x000001A450D6ED88>: Failed to establish a new connection: [Errno 11001] getaddrinfo failed'))
+https://katcr.co/,HTTPSConnectionPool(host='katcr.co', port=443): Max retries exceeded with url: / (Caused by NewConnectionError('<urllib3.connection.HTTPSConnection object at 0x000001A450D82AC8>: Failed to establish a new connection: [Errno 11001] getaddrinfo failed'))
+https://katcr.to/,200
+https://kikass.to/,503
+https://kat.sx/,200
+https://kickass.sx/,200
+https://kickass1.to/,200
+https://kat.ag,HTTPSConnectionPool(host='kat.ag', port=443): Max retries exceeded with url: / (Caused by SSLError(SSLError(1, '[SSL: TLSV1_ALERT_INTERNAL_ERROR] tlsv1 alert internal error (_ssl.c:1076)')))
+https://ibit.to,200
+https://onionplay.eu,200
+https://onionplay-network.xyz/,HTTPSConnectionPool(host='onionplay-network.xyz', port=443): Max retries exceeded with url: / (Caused by NewConnectionError('<urllib3.connection.HTTPSConnection object at 0x000001A450D82248>: Failed to establish a new connection: [Errno 11002] getaddrinfo failed'))
+https://onionplay.co/,200
+https://proxyportal.org,403
+https://proxyportal.ws/,HTTPSConnectionPool(host='proxyportal.ws', port=443): Max retries exceeded with url: / (Caused by NewConnectionError('<urllib3.connection.HTTPSConnection object at 0x000001A450D82C88>: Failed to establish a new connection: [WinError 10061] No connection could be made because the target machine actively refused it'))
+https://p30download.com,200
+https://torrentquest.com/,200
+http://rutor.info/,HTTPSConnectionPool(host='rutor.info', port=443): Max retries exceeded with url: / (Caused by NewConnectionError('<urllib3.connection.HTTPSConnection object at 0x000001A450D9CFC8>: Failed to establish a new connection: [WinError 10061] No connection could be made because the target machine actively refused it'))
+http://btbtdy.me/,HTTPSConnectionPool(host='btbtdy.me', port=443): Max retries exceeded with url: / (Caused by NewConnectionError('<urllib3.connection.HTTPSConnection object at 0x000001A450D9C108>: Failed to establish a new connection: [WinError 10060] A connection attempt failed because the connected party did not properly respond after a period of time, or established connection failed because connected host has failed to respond'))
+https://lookmovie.ag/,200
+https://www.037hdd.com/,200
+https://cuevana3.io/,200
+https://cuevana3.co/,200
+https://exsite24.pl/,403
+http://www.downduck.com/,200
+https://www.downloadha.com/,200
+http://emotionvideo-tv.com/,200
+http://movieon21.biz/,HTTPSConnectionPool(host='movieon21.biz', port=443): Max retries exceeded with url: / (Caused by NewConnectionError('<urllib3.connection.HTTPSConnection object at 0x000001A450D75DC8>: Failed to establish a new connection: [WinError 10061] No connection could be made because the target machine actively refused it'))
+http://movieon21.xyz/,200
+http://m6.modufree.net,200
+https://j20.hitjjal.com/,HTTPSConnectionPool(host='j20.hitjjal.com', port=443): Max retries exceeded with url: / (Caused by NewConnectionError('<urllib3.connection.HTTPSConnection object at 0x000001A450D5AEC8>: Failed to establish a new connection: [Errno 11001] getaddrinfo failed'))
+https://phim33.com/,200
+https://www.tfp.is/,200
+http://www.tvsubtitles.net/,HTTPSConnectionPool(host='www.tvsubtitles.net', port=443): Max retries exceeded with url: / (Caused by NewConnectionError('<urllib3.connection.HTTPSConnection object at 0x000001A450D6E288>: Failed to establish a new connection: [WinError 10061] No connection could be made because the target machine actively refused it'))
+http://www.msubs.net,HTTPSConnectionPool(host='www.msubs.net', port=443): Max retries exceeded with url: / (Caused by SSLError(SSLCertVerificationError("hostname 'www.msubs.net' doesn't match either of 'tv-subs.net', 'tvsubs.net', 'tvsubs.ru', 'www.tv-subs.net', 'www.tvsubs.net', 'www.tvsubs.ru'")))
+https://dytt8.net/,HTTPSConnectionPool(host='dytt8.net', port=443): Max retries exceeded with url: / (Caused by SSLError(SSLCertVerificationError(1, '[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: self signed certificate (_ssl.c:1076)')))
+https://www.ttdytt.cc/,HTTPSConnectionPool(host='www.ttdytt.cc', port=443): Max retries exceeded with url: / (Caused by NewConnectionError('<urllib3.connection.HTTPSConnection object at 0x000001A450DA6F48>: Failed to establish a new connection: [WinError 10060] A connection attempt failed because the connected party did not properly respond after a period of time, or established connection failed because connected host has failed to respond'))
+https://www.ttdytt.net/,HTTPSConnectionPool(host='www.ttdytt.net', port=443): Max retries exceeded with url: / (Caused by SSLError(SSLCertVerificationError(1, '[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: self signed certificate (_ssl.c:1076)')))
+http://fast-torrent.ru/,HTTPSConnectionPool(host='fast-torrent.ru', port=443): Max retries exceeded with url: / (Caused by SSLError(SSLCertVerificationError(1, '[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: certificate has expired (_ssl.c:1076)')))
+http://www.heroturko.net/,200
+https://www.imovies.cc,200
+https://www.imovies.ge,200
+https://getpopcorntime.is/,200
+http://toxicwap.com,200
+https://english-films.com/,200
+https://topeuropix.net/,200
+https://topeuropix.com/,200
+https://poseidonhd.me/,HTTPSConnectionPool(host='poseidonhd.me', port=443): Max retries exceeded with url: / (Caused by SSLError(SSLError(1, '[SSL: WRONG_VERSION_NUMBER] wrong version number (_ssl.c:1076)')))
+https://poseidonhd.co/,HTTPSConnectionPool(host='poseidonhd.co', port=443): Max retries exceeded with url: / (Caused by NewConnectionError('<urllib3.connection.HTTPSConnection object at 0x000001A450DA7C88>: Failed to establish a new connection: [Errno 11002] getaddrinfo failed'))
+http://www.anakbnet.com/,523
+https://www.moviesjoy.net/,200
+https://www.filmlicious.net/,200
+https://proxybit.fun/,200
+https://proxybit.pro/,HTTPSConnectionPool(host='proxybit.pro', port=443): Max retries exceeded with url: / (Caused by SSLError(SSLError(1, '[SSL: TLSV1_ALERT_INTERNAL_ERROR] tlsv1 alert internal error (_ssl.c:1076)')))
+https://www.123movies.love/,200
+https://1primewire.com/,404
+https://movies.cab/,404
+https://www1.putlocker.digital/,404
+http://www6.solarmoviefree.net/,HTTPSConnectionPool(host='www6.solarmoviefree.net', port=443): Max retries exceeded with url: / (Caused by NewConnectionError('<urllib3.connection.HTTPSConnection object at 0x000001A450DA7B88>: Failed to establish a new connection: [WinError 10061] No connection could be made because the target machine actively refused it'))
+http://www1.solarmovie.net/,503
+https://yifyddl.movie/,200
+https://yify.yt/,200
+https://yifymovietorrent.com/,526
+https://ytsdownload.com/,526
+https://movie4k.ag/,HTTPSConnectionPool(host='movie4k.ag', port=443): Max retries exceeded with url: / (Caused by SSLError(SSLCertVerificationError(1, '[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: certificate has expired (_ssl.c:1076)')))
+http://www3.fmovies.org/,503
+https://5movies.cloud/,200
+http://couchtuner2.com/,HTTPSConnectionPool(host='couchtuner2.com', port=443): Max retries exceeded with url: / (Caused by SSLError(SSLCertVerificationError("hostname 'couchtuner2.com' doesn't match either of 'cloudflare-dns.com', '*.cloudflare-dns.com', 'one.one.one.one', '1.1.1.1', '1.0.0.1', '162.159.36.1', '162.159.46.1', '2606:4700:4700:0:0:0:0:1111', '2606:4700:4700:0:0:0:0:1001', '2606:4700:4700:0:0:0:0:64', '2606:4700:4700:0:0:0:0:6400'")))
+https://couchtuner123.com/,200
+https://ww1.couchtuner.watch/,404
+https://couchtuner0.com/,404
+https://2watchfree.me/,200
+https://1watchfree.me/,200
+https://putlockerstoworld2.com/,HTTPSConnectionPool(host='putlockerstoworld2.com', port=443): Max retries exceeded with url: / (Caused by SSLError(SSLError(1, '[SSL: WRONG_VERSION_NUMBER] wrong version number (_ssl.c:1076)')))
+https://putlocker.actor/,404
+http://www.rrys2019.com/,HTTPSConnectionPool(host='www.rrys2019.com', port=443): Max retries exceeded with url: / (Caused by NewConnectionError('<urllib3.connection.HTTPSConnection object at 0x000001A450DA7BC8>: Failed to establish a new connection: [WinError 10060] A connection attempt failed because the connected party did not properly respond after a period of time, or established connection failed because connected host has failed to respond'))
+http://www.zmz2019.com/,HTTPSConnectionPool(host='www.zmz2019.com', port=443): Max retries exceeded with url: / (Caused by NewConnectionError('<urllib3.connection.HTTPSConnection object at 0x000001A450DA8D08>: Failed to establish a new connection: [Errno 11002] getaddrinfo failed'))
+http://m4ufree.tv/,503
+http://them4ufree.info/,503
+https://projectfreetv.xyz/,522
+https://www13.yesmovies.gg/,503
+https://yesmovies.ai/,503
+https://www3.yesmovies.cloud,200
+http://cayphim.net/,HTTPSConnectionPool(host='cayphim.net', port=443): Max retries exceeded with url: / (Caused by NewConnectionError('<urllib3.connection.HTTPSConnection object at 0x000001A450DA3A88>: Failed to establish a new connection: [Errno 11001] getaddrinfo failed'))
+https://www4.dramacool.video/,200
+https://www1.dramacool.movie/,200
+https://gimy.tv/,200
+http://kenh88.com/,522
+https://yeuphimmoi.com/,200
+http://www.anime-sharing.com/,522
+http://tokyotosho.info/,200
+https://animetosho.org/,200
+https://www.animebam.net/,503
+https://www.animebam.se/,503
+https://animelon.com/,521
+https://ww5.animejolt.com/,200
+https://project-gxs.com/,HTTPSConnectionPool(host='project-gxs.com', port=443): Max retries exceeded with url: / (Caused by SSLError(SSLError(1, '[SSL: WRONG_VERSION_NUMBER] wrong version number (_ssl.c:1076)')))
+https://eyeonanime.tv/,HTTPSConnectionPool(host='eyeonanime.tv', port=443): Max retries exceeded with url: / (Caused by SSLError(SSLError(1, '[SSL: TLSV1_ALERT_INTERNAL_ERROR] tlsv1 alert internal error (_ssl.c:1076)')))
+https://animehd47.com/,200
+http://animereborn.io/,503
