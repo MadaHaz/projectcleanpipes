@@ -98,7 +98,7 @@ class ISP_Domain_Results_Interpreter:
     def dictOfAllDomainsOfAllISPs(self, domainFile, reason):
         dictionaryOfDomains = {}
 
-        with open(domainFile) as fp:
+        with open('../data/' + domainFile) as fp:
             Lines = fp.readlines()
         for name in self.list_of_domains:
             name = name.rstrip("\n")

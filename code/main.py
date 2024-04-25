@@ -237,7 +237,7 @@ def getAllResponseCodes(ISP_List):
 
 def List_Of_Domains(domainFile):
     domain_list = []
-    with open(domainFile) as fp:
+    with open('../data/' + domainFile) as fp:
         Lines = fp.readlines()
     for line in Lines:
 
