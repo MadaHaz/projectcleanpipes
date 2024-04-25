@@ -58,4 +58,5 @@ A correct `OUTPUT` would be, `"../results/OUTPUT_FILE.csv"`.
 A correct `interpret_files` would be, `['Optus_25Mar.csv','AARC_12Apr.csv']`.
 
 4. Open a terminal window and go into the `code` folder containing `main.py`.
-5. Run the command `python main.py` and view the results.
+5. Run the command `python main.py`.
+6. Results will be printed to the terminal and output to a file called `collated_results_interpreted.csv` in the `results` folder.
