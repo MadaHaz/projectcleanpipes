@@ -165,7 +165,7 @@ def readCSVToDomain(file_names):
     ISP_list = []
 
     for file in results_files:
-        with open(os.path.join('Results',file)) as csv_file:
+        with open(os.path.join('../results',file)) as csv_file:
             csv_reader = csv.reader(csv_file, delimiter=',')
             line_count = 0
             domainDict = {}
@@ -268,22 +268,20 @@ def writeCollatedResults(ISP_List,allResponseCodes):
         #ALL_Other_ISPs.append(isp)
 
 
-def interpretResults():
-    ISP_LIST = readCSVToDomain(['Optus_25Mar.csv','AARC_12Apr.csv'])
-
+def interpretResults(interpret_files):
+    ISP_LIST = readCSVToDomain(interpret_files)
 
     allResponseCodes = getAllResponseCodes(ISP_LIST)
     writeCollatedResults(ISP_LIST,allResponseCodes)
 
 def main():
 
-    #uncomment this to interrpet resutls
-    interpretResults()
+    # Uncomment this to interpret results.
+    interpret_files = ['Optus_25Mar.csv','AARC_12Apr.csv']
+    interpretResults(interpret_files)
 
-
-
-    #Uncomment this for data collection
-    #CalculateListOfDomains("CopyRight_Telstra.txt","Results/Optus_25Mar.csv")
+    # Uncomment this for data collection.
+    # CalculateListOfDomains("../data/CopyRight_Telstra.txt","../results/Optus_25Mar.csv")
 
 
 
