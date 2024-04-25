@@ -263,7 +263,8 @@ def writeCollatedResults(ISP_List,allResponseCodes):
         #ALL_Other_ISPs = ISP_List
         #ALL_Other_ISPs.remove(isp)
 
-        New_ISP_Domain_Results_Interpreter = ISP_Domain_Results_Interpreter(isp.name,isp,ISP_List,domain_response_codes,default_DNS_response_codes,public_DNS_response_codes, List_Of_Domains("CopyRight_Telstra.txt"))
+        # Change the last part of this function to whichever file was used to create the data.
+        New_ISP_Domain_Results_Interpreter = ISP_Domain_Results_Interpreter(isp.name,isp,ISP_List,domain_response_codes,default_DNS_response_codes,public_DNS_response_codes, List_Of_Domains("30BannedSites_2020.txt"))
         New_ISP_Domain_Results_Interpreter.writeResults()
         #ALL_Other_ISPs.append(isp)
 
@@ -276,12 +277,33 @@ def interpretResults(interpret_files):
 
 def main():
 
-    # Uncomment this to interpret results.
-    interpret_files = ['Optus_25Mar.csv','AARC_12Apr.csv']
-    interpretResults(interpret_files)
+    # Uncomment this to interpret results. Dev Testing.
+    # interpret_files = ['Optus_25Mar.csv','AARC_12Apr.csv']
+    # interpretResults(interpret_files)
 
-    # Uncomment this for data collection.
+    # Uncomment this for data collection. Dev Testing.
     # CalculateListOfDomains("../data/CopyRight_Telstra.txt","../results/Optus_25Mar.csv")
+
+    # Collect data on 30 Banned Sites (BS).
+    # Output file format is BS_ISPNAME_DAYMONTH_YEAR.csv, example is, BS_AussieBroadband_25Apr_2024.csv
+    CalculateListOfDomains("../data/30BannedSites_2020.txt", "../results/BS_AussieBroadband_25Apr_2024.csv");
+
+    # Collect data on 15 Top Sites (TS).
+    # Output file format is TS_ISPNAME_DAYMONTH_YEAR.csv, example is, TS_AussieBroadband_25Apr_2024.csv
+    CalculateListOfDomains("../data/15MostVisitedSites_April_2024.txt", "../results/TS_AussieBroadband_25Apr_2024.csv");
+
+    # Interpret the results.
+    # Place the output files from the previous step here. Both BS and TS
+    # IMPORTANT, Make sure to change the filename in line 267 to whichever file was used to make the results file you want to interpret.
+    # Make sure there is only 1 file interpretted at a time.
+    # LEAVE THIS FOR LATER.
+    # interpret_files = ['BS_AussieBroadband_25Apr_2024.csv']
+    # interpretResults(interpret_files);
+
+    # Results are stored in ./results/collated_results_interpreted.csv
+    # Change the name of that file before uploading them.
+    # Format is, TYPE_ISPNAME_Collated_Results_Interpreted.csv, example is, TS_AussieBroadband_Collated_Results_Interpreted.csv
+
 
 
 
