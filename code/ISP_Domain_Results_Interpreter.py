@@ -92,7 +92,7 @@ class ISP_Domain_Results_Interpreter:
             list(dict.fromkeys(self.public_DNS_response_codes.get(dom))),
             self.printBlockPages(),
             self.blockingMethodAlgorithm(domain)],
-            'Results/collated_results_interpreted.csv')
+            '../results/collated_results_interpreted.csv')
 
 
     def dictOfAllDomainsOfAllISPs(self, domainFile, reason):
