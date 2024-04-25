@@ -57,6 +57,10 @@ A correct `OUTPUT` would be, `"../results/OUTPUT_FILE.csv"`.
 > The `interpret_files` value is a list of files. The value is declared in the main function.
 A correct `interpret_files` would be, `['Optus_25Mar.csv','AARC_12Apr.csv']`.
 
+> You can choose how many files to interpret at once.
+Format for multiple, `interpret_files = ['Optus_25Mar.csv','AARC_12Apr.csv']`.
+Format for single, `interpret_files = ['Optus_25Mar.csv']`.
+
 4. Open a terminal window and go into the `code` folder containing `main.py`.
 5. Run the command `python main.py`.
 6. Results will be printed to the terminal and output to a file called `collated_results_interpreted.csv` in the `results` folder.
