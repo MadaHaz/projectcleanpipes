@@ -9,9 +9,7 @@ from ISP_Domain_Results_Interpreter import ISP_Domain_Results_Interpreter
 from ISP import ISP
 import ipaddress
 from CSV_Methods import *
-
-
-
+import tkinter as tk
 
 def getResolvedIPs(TupleList):
     IPAddresses = []
@@ -26,16 +24,12 @@ def getResolvedIPs(TupleList):
     return IPAddresses
 
 
-
-
-
 def WriteResultsList(domainList, writeFile):
     websiteList = []
     with open(domainList) as fp:
         Lines = fp.readlines()
     for line in Lines:
         websiteList.append(line.strip('\n'))
-
 
     ourIP = str(getIPAddress())
 
@@ -50,39 +44,28 @@ def WriteResultsList(domainList, writeFile):
             WebsiteNOHttp = item[positionofWWW+1:]
 
         try:
-
             requestResults = requestWebsite(WebsiteNOHttp)
             responseCODE = requestResults.get('RespondeCode')
-
         except Exception as e:
-
             responseCODE = str(e)
-
 
         try:
             WebsiteNOHttpNoSlash = WebsiteNOHttp.replace('/',"")
             ResolvedIPs = getIPAddressOfDomain(WebsiteNOHttpNoSlash)
             IPString = ResolvedIPs[0]
             IPList = ResolvedIPs[1]
-
-
         except Exception as e:
-
             IPString = str(e)
             IPList = ['NaN','NaN','NaN','NaN','NaN','NaN','NaN','NaN','NaN','NaN','NaN','NaN']
 
         responseCODE = responseCODE.replace(',',';')
 
-
-
         if 'www.' == WebsiteNOHttp[0:4]:
-
             WebsiteNoWWWNoSlash = WebsiteNOHttp[4:]
         else:
             WebsiteNoWWWNoSlash = WebsiteNOHttp
         if '/' == WebsiteNoWWWNoSlash[-1]:
             WebsiteNoWWWNoSlash = WebsiteNoWWWNoSlash[0:-1]
-
 
         hopList = scapyTracerouteWithSR(WebsiteNoWWWNoSlash)
         hopNumber = len(hopList)
@@ -90,17 +73,11 @@ def WriteResultsList(domainList, writeFile):
 
         DifferentDNSIPs = resolveIPFromDNS(WebsiteNoWWWNoSlash, listOfDNSs())
 
-
-
         DNSResolvedIPS = getResolvedIPs(DifferentDNSIPs)
-
 
         DNSIPResponseCodes = IPResponseCodes(DNSResolvedIPS)
 
-
         DifferentDNSIPSting = str(DifferentDNSIPs).replace(',',';')
-
-
 
         IpRequestResponseCodes = IPResponseCodes(IPList)
 
@@ -115,19 +92,15 @@ def WriteResultsList(domainList, writeFile):
     AARNFile.close()
 
 
-
 def checkErrorCodeOfOtherDNS(tupleList):
     for tupl in tupleList:
         ip = tupl[0]
-
 
 
 def checkIP():
     p=sr1(IP(dst='140.32.113.3')/ICMP())
     if p:
         p.show()
-
-
 
 
 def writeObjectToCSV(obj, writeFile):
@@ -143,7 +116,6 @@ def CalculateListOfDomains(openFile, writeFile):
         Lines = fp.readlines()
     for line in Lines:
         websiteList.append(line.strip('\n'))
-
 
     ourIP = str(getIPAddress())
 
@@ -172,10 +144,8 @@ def readCSVToDomain(file_names):
 
             for row in csv_reader:
                 if line_count == 0:
-
                     line_count += 1
                 else:
-
                     name = 'domain_{}'.format(stripDomainName(row[0]).get('WebsiteNoHttpNoWWWNoSlash').replace('.',""))
                     print("ISP: "+str(file)+ " DOMAIN: "+str(name))
                     domainDict[name] = Domain(domain = row[0],
@@ -186,15 +156,10 @@ def readCSVToDomain(file_names):
                     Block_Page_Different_DNS_List ="Read from CSV",domainBlockPage=row[15], AARC_DNS_Block_Page = row[16].strip('][').replace('\'','').split(', '), Optus_DNS_Block_Page = row[17].strip('][').replace('\'','').split(', '), Google_DNS_Block_Page = row[18].strip('][').replace('\'','').replace('\'','').split(', '), Cloudflare_DNS_Block_Page = row[19].strip('][').replace('\'','').split(', '), Cloudflare_Block_Page_Different_DNS_List = "Read from CSV",domainCloudFlareBlockPage = row[20],
                     AARC_DNS_Cloudflare_Block_Page = row[21].strip('][').replace('\'','').split(', '), Optus_DNS_Cloudflare_Block_Page = row[22].strip('][').replace('\'','').split(', '), Google_DNS_Cloudflare_Block_Page = row[23].strip('][').replace('\'','').split(', '), Cloudflare_DNS_Cloudflare_Block_Page = row[24].strip('][').replace('\'','').split(', '), Default_DNS_Block_Page = row[25].strip('][').replace('\'','').replace(' ','').split(','), Default_DNS_Cloudflare_Block_Page = row[26].strip('][').replace('\'','').replace(' ','').split(','))
 
-
                     line_count += 1
-
-
-
 
             new_ISP = ISP("ISP_{}".format(file), domainDict)
             ISP_list.append(new_ISP)
-
 
             domainDict = {}
             new_ISP  = None
@@ -205,56 +170,45 @@ def readCSVToDomain(file_names):
 def insertStrInToDict(dic, key, value):
     if key not in dic:
         dic[key] = [value]
-
     else:
         dic[key] = dic[key] + [value]
-
 
 
 def insertListInToDict(dic, key, value):
     if key not in dic:
         dic[key] = value
-
     else:
         dic[key] = dic[key] + value
+
 
 def getAllResponseCodes(ISP_List):
     domain_response_codes = {}
     default_DNS_response_codes = {}
     public_DNS_response_codes = {}
     for isp in ISP_List:
-
-
-
-
         for dom in isp.domains:
             insertStrInToDict(domain_response_codes, dom, isp.domains.get(dom).responseCode)
             insertListInToDict(default_DNS_response_codes, dom, isp.domains.get(dom).ISP_IP_Response_Code)
             insertListInToDict(public_DNS_response_codes, dom, isp.domains.get(dom).Google_DNS_Response_Code + isp.domains.get(dom).Cloudflare_DNS_Response_Code)
 
-
     return {'domain_response_codes':domain_response_codes, 'default_DNS_response_codes':default_DNS_response_codes ,'public_DNS_response_codes':public_DNS_response_codes}
+
 
 def List_Of_Domains(domainFile):
     domain_list = []
     with open('../data/' + domainFile) as fp:
         Lines = fp.readlines()
     for line in Lines:
-
-
         line = line.rstrip("\n")
         name = 'domain_{}'.format(stripDomainName(line).get('WebsiteNoHttpNoWWWNoSlash').replace('.',"").rstrip("\n"))
         domain_list.append(name)
     return domain_list
 
+
 def writeCollatedResults(ISP_List,allResponseCodes):
     domain_response_codes = allResponseCodes.get('domain_response_codes')
     default_DNS_response_codes = allResponseCodes.get('default_DNS_response_codes')
     public_DNS_response_codes = allResponseCodes.get('public_DNS_response_codes')
-
-
-
-
 
     for isp in ISP_List:
         #new_Results = ISP_Domain_Results_Interpreter("hey", isp)
@@ -274,6 +228,7 @@ def interpretResults(interpret_files):
 
     allResponseCodes = getAllResponseCodes(ISP_LIST)
     writeCollatedResults(ISP_LIST,allResponseCodes)
+
 
 def main():
 
