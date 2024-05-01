@@ -9,7 +9,8 @@ from ISP_Domain_Results_Interpreter import ISP_Domain_Results_Interpreter
 from ISP import ISP
 import ipaddress
 from CSV_Methods import *
-import tkinter as tk
+import customtkinter as ctk
+from tkinter import filedialog  
 
 def getResolvedIPs(TupleList):
     IPAddresses = []
@@ -230,7 +231,64 @@ def interpretResults(interpret_files):
     writeCollatedResults(ISP_LIST,allResponseCodes)
 
 
+def runGUI():
+    # SETUP TKINTER 
+    ctk.set_appearance_mode("light") # Modes: "system" (default), "dark", "light"
+    ctk.set_default_color_theme("blue") # Themes: "blue" (default), "green", "dark-blue"
+    app = ctk.CTk()
+    app.geometry("400x300") # Set the size.
+    app.title('Clean Pipes GUI') # Set the name.
+
+    # Create the tab view
+    tab_view = ctk.CTkTabview(app)
+    tab_view.pack(padx=20, pady=20)
+
+    # COLLECTION TAB
+    # Create the first tab.
+    CollectionTab = tab_view.add("Collection")
+    # Create label for ISP Name field.
+    label_ISPName = ctk.CTkLabel(master=CollectionTab, text="ISP Name:")
+    label_ISPName.pack()
+    # Create input field for ISP Name.
+    input_ISPName = ctk.CTkEntry(master=CollectionTab, width=200)
+    input_ISPName.pack()
+    # Import files.
+    def handle_file_selection():
+        # Open file selector, looking for text files.
+        filename = filedialog.askopenfilename(title="Select a file", filetypes=[("Text files", "*.txt")])
+
+        # Update field with selection.
+        if filename:
+            input_siteList.delete(0, "end") # Clear previous selection.
+            input_siteList.insert(0, filename)
+            print(filename)
+
+    # Create label for file selection field.
+    label_siteList = ctk.CTkLabel(master=CollectionTab, text="Select File:")
+    label_siteList.pack()
+    # Create input field for site list file.
+    input_siteList = ctk.CTkEntry(master=CollectionTab, width=200, state="readonly")  # Set as read-only
+    input_siteList.pack()
+    # Create button to start file selection.
+    button_siteList = ctk.CTkButton(master=CollectionTab, text="Browse", command=handle_file_selection)
+    button_siteList.pack()
+
+    # INTERPRET TAB
+    # Create the second tab
+    InterpretTab = tab_view.add("Interpret")
+    # Create elements for tab 2
+    label2 = ctk.CTkLabel(master=InterpretTab, text="This is tab 2")
+    label2.pack(pady=10)
+    button2 = ctk.CTkButton(master=InterpretTab, text="Button in Tab 2")
+    button2.pack()
+
+    # Start the Tkinter event loop.
+    app.mainloop();
+
+
 def main():
+    print("STARTED")
+    runGUI()
 
     # Uncomment this to interpret results. Dev Testing.
     # interpret_files = ['Optus_25Mar.csv','AARC_12Apr.csv']
@@ -241,11 +299,11 @@ def main():
 
     # Collect data on 30 Banned Sites (BS).
     # Output file format is BS_ISPNAME_DAYMONTH_YEAR.csv, example is, BS_AussieBroadband_25Apr_2024.csv
-    CalculateListOfDomains("../data/30BannedSites_2020.txt", "../results/BS_AussieBroadband_25Apr_2024.csv");
+    # CalculateListOfDomains("../data/30BannedSites_2020.txt", "../results/BS_AussieBroadband_25Apr_2024.csv");
 
     # Collect data on 15 Top Sites (TS).
     # Output file format is TS_ISPNAME_DAYMONTH_YEAR.csv, example is, TS_AussieBroadband_25Apr_2024.csv
-    CalculateListOfDomains("../data/15MostVisitedSites_April_2024.txt", "../results/TS_AussieBroadband_25Apr_2024.csv");
+    # CalculateListOfDomains("../data/15MostVisitedSites_April_2024.txt", "../results/TS_AussieBroadband_25Apr_2024.csv");
 
     # Interpret the results.
     # Place the output files from the previous step here. Both BS and TS
@@ -266,3 +324,20 @@ def main():
 
 if __name__ == "__main__":
     main()
+
+    # # SETUP TKINTER 
+    # ctk.set_appearance_mode("light") # Modes: "system" (default), "dark", "light"
+    # ctk.set_default_color_theme("blue") # Themes: "blue" (default), "green", "dark-blue"
+    # root = ctk.CTk()
+    # root.geometry("500x350") # Set the size.
+    # root.title('Clean Pipes GUI') # Set the name.
+
+    # # SETUP FRAME
+    # frame = ctk.CTkFrame(master = root)
+    # frame.pack(pady = 20, padx = 60, fill = "both", expand = True)
+
+    # label = ctk.CTkLabel(master = frame, text = "IN PROGRESS", font = ("Roboto", 24))
+    # label.pack(pady = 12, padx = 10)
+
+    # # Start the Tkinter event loop.
+    # root.mainloop();
