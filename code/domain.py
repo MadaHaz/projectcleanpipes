@@ -49,23 +49,34 @@ class Domain:
         Default_DNS_Cloudflare_Block_Page=[]
     ):
         # Raw Results
+        # domain to domainNoHTTPNoSlashNoWWW passed as argument
+        # contains stripped and unstripped iterations of domain str
         self.domain = domain
         self.domainNoHTTP = domainNoHTTP
         self.domainNoHTTPNoSlash = domainNoHTTPNoSlash
         self.domainNoHTTPNoSlashNoWWW = domainNoHTTPNoSlashNoWWW
+        # domain_concat removes "." from WebsiteNoHTTPNoWWWNoSlash
+        # example "google.com" -> "domain_googlecom"
         self.domain_concat_name = 'domain_{}'.format(
             stripDomainName(domain)
             .get('WebsiteNoHttpNoWWWNoSlash')
             .replace('.', "")
             )
+        # conditional runs if str for responseCode or domainBlockPage
+        # or domainCloudFlareBlockPage is empty which means the site has
+        # not been queried
         if (
             responseCode == "" or
             domainBlockPage == "" or
             domainCloudFlareBlockPage == ""
         ):
+            # queries domain and processes response for responseCode(str),
+            # domainBlockPage(boolean) and domainCloudFlareBLockPage(boolean)
+            # return_Response_Code returns a dictionary of the mentioned values
             self.domainResults = self.return_Response_Code()
         else:
             self.domainResults = None
+        # conditional should set responseCode to response from domainResults
         if responseCode == "":
             # bug here, I think that the return_Response_Code() is returning
             # an error string, bug was caused when i was reading in results to
@@ -73,17 +84,24 @@ class Domain:
             # return_Response_Code() method, pretty sure this issue is resolved
             self.responseCode = self.domainResults.get('ResponseCode')
         else:
+            # if responseCode is set the value remains the same
             self.responseCode = responseCode
+        # conditional should set domainBlockPage to response from domainResults
         if domainBlockPage == "":
             self.domainBlockPage = self.domainResults.get('BlockPage')
         else:
             self.domainBlockPage = domainBlockPage
+        # conditional should set domainCloudFlareBlock page to response
+        # from domainResults
         if domainCloudFlareBlockPage == "":
             self.domainCloudFlareBlockPage = (
                 self.domainResults.get('CloudflareBlockPage')
             )
         else:
+            # if domainCloudFlareBlockPage is set the value is the same
             self.domainCloudFlareBlockPage = domainCloudFlareBlockPage
+        # a query on your DNS resolver is run and a nameserver str is retrieved
+        # the conditional sets the retrieved nameserver as ISP_DNS
         if ISP_DNS == "":
             self.ISP_DNS = self.return_DNS()
         else:
@@ -308,23 +326,36 @@ class Domain:
                 resultsDict[code] = 1
         return resultsDict
 
+    # return_Reponse_Code() takes domain str and http/https boolean to query
+    # website for response data that returns a dictionary of responseCode str
+    # BlockPage boolean and CloudflareBlockPage boolean
     def return_Response_Code(self):
         https = False
         http = False
+        # conditionals check if domain is http or https a
         if self.domain[0:5] == "https":
             https = True
         if self.domain[0:5] == "http:":
             http = True
+        # try catch block will throw an exception if error occurs
         try:
+            # passes domainNoHTTP str, https & https booleans to requestWebsite
+            # domain passed format -> www.google.com/ slash intact
+            # results is a dictionary containing ResponseCode(str),
+            # BlockPage(boolean) and CloudflareBlockPage
             results = requestWebsite(self.domainNoHTTP, http, https)
             print("DO WE GET TO RESULTS?")
+            # returns a dictionary with results data
             return {
                 'ResponseCode': results.get('RespondeCode'),
                 'BlockPage': results.get('BlockPage'),
                 'CloudflareBlockPage': results.get('CloudflareBlockPage')}
         except Exception as e:
+            # error in the querying process
             print("NAH WE GET TO EXCEPTION")
+            # error is converted to a string
             errorMessage = str(e).replace(',', ';')
+            # returns query error as ResponseCode in dictionary
             return {
                 'ResponseCode': errorMessage,
                 'BlockPage': "N/A",
@@ -334,6 +365,9 @@ class Domain:
     def return_ISP_IP_List(self):
         return getIPAddressOfDomain(self.domainNoHTTPNoSlash)[0]
 
+    # getMyDNS() is a function from website_functions.py
+    # it returns one nameserver str  but the getMyDNS() function may have
+    # retrieved multiple nameservers
     def return_DNS(self):
         return getMyDNS()
 

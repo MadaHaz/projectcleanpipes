@@ -41,20 +41,43 @@ def writeObjectToCSV(obj, writeFile):
 
 
 def CalculateListOfDomains(openFile, writeFile):
+    # openFile is a list of website domains
+    # writefile is the location of the output file
     websiteList = []
+    # with keyword here handles the closing of file streams if exception arises
+    # it is used instead of file.open() and file.close()
+    # error before file.close() may result in resource remaining open
+    # open keyword returns the file as an object
+    # as assigns the object to fp
     with open(openFile) as fp:
+        # readlines method returns each line of the file as list item
         Lines = fp.readlines()
+    # iterates a list called lines containing website domains from openFile
     for line in Lines:
+        # strips the newline escape character from line
         websiteList.append(line.strip('\n'))
+    # websiteList are the domains from openFile stripped of \n escape character
+    # iterates through each domain
     for item in websiteList:
+        # domain is a domain name for a website
         domain = item
+        # stripDomainName is method from website_functions.py
+        # returns a key value pair dictionary paring down domains
+        # example is https://www.google.com/
+        # 'WebsiteNOHttp':'www.google.com/'
+        # 'WebsiteNOHttpNoSlash':'www.google.com'
+        # 'WebsiteNoHttpNoWWWNoSlash':'google.com'
         domainStripped = stripDomainName(domain)
+        # .get() retrieves stripped domain str from dictionary
         WebsiteNOHttp = domainStripped.get('WebsiteNOHttp')
         WebsiteNOHttpNoSlash = domainStripped.get('WebsiteNOHttpNoSlash')
         WebsiteNoHttpNoWWWNoSlash = domainStripped.get(
             'WebsiteNoHttpNoWWWNoSlash'
             )
+        # prints the unstripped item/domain in terminal
         print(item)
+        # uses stripped and unstripped versions of domain
+        # to instantiate class Domain obj from domain.py
         obj = Domain(
             domain=domain,
             domainNoHTTP=WebsiteNOHttp,
@@ -230,15 +253,18 @@ def interpretResults(interpret_files):
 
 
 def main():
+    # CalculateListOfDomains takes two arguments -> openFile and writeFile
+    # openFile is a txt document with a list of domains
+    # writeFile is the location of a results csv
     # Uncomment this for data collection. Dev Testing.
     CalculateListOfDomains(
         "../data/CopyRight_Telstra.txt",
         "../results/Optus_25Mar.csv"
-        )
+    )
 
     # Uncomment this to interpret results. Dev Testing.
-    interpret_files = ['Optus_25Mar.csv', 'AARC_12Apr.csv']
-    interpretResults(interpret_files)
+    # interpret_files = ['Optus_25Mar.csv', 'AARC_12Apr.csv']
+    # interpretResults(interpret_files)
 
     # Collect data on 30 Banned Sites (BS).
     # Output file format is BS_ISPNAME_DAYMONTH_YEAR.csv, example is,
@@ -246,10 +272,9 @@ def main():
     """
     CalculateListOfDomains(
         "../data/30BannedSites_2020.txt",
-        "../results/BS_AussieBroadband_25Apr_2024.csv"
+        "../results/BS_Telstra_29Apr_2024.csv"
         )
     """
-
     # Collect data on 15 Top Sites (TS).
     # Output file format is TS_ISPNAME_DAYMONTH_YEAR.csv,
     # example is, TS_AussieBroadband_25Apr_2024.csv
