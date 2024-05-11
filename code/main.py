@@ -112,6 +112,7 @@ def writeObjectToCSV(obj, writeFile):
 
 
 def CalculateListOfDomains(openFile, writeFile):
+    print("COLLECTING DATA...")
     websiteList = []
     with open(openFile) as fp:
         Lines = fp.readlines()
@@ -131,6 +132,9 @@ def CalculateListOfDomains(openFile, writeFile):
         print(item)
         obj = Domain(domain = domain,domainNoHTTP = WebsiteNOHttp,domainNoHTTPNoSlash = WebsiteNOHttpNoSlash, domainNoHTTPNoSlashNoWWW =  WebsiteNoHttpNoWWWNoSlash)
         writeObjectToCSV(obj, writeFile)
+
+    
+    print("FINISHED COLLECTING DATA")
 
 
 def readCSVToDomain(file_names):
@@ -244,43 +248,82 @@ def runGUI():
     tab_view.pack(padx=20, pady=20)
 
     # COLLECTION TAB
+    col_data_file = None
+    col_data_file2 = ctk.StringVar(value="")
+    col_label_filename_text = ctk.StringVar(value="No File Selected!")
+
     # Create the first tab.
     CollectionTab = tab_view.add("Collection")
     # Create label for ISP Name field.
-    label_ISPName = ctk.CTkLabel(master=CollectionTab, text="ISP Name:")
-    label_ISPName.pack()
+    col_label_ISPName = ctk.CTkLabel(master=CollectionTab, text="ISP Name:")
+    col_label_ISPName.pack()
     # Create input field for ISP Name.
-    input_ISPName = ctk.CTkEntry(master=CollectionTab, width=200)
-    input_ISPName.pack()
+    col_input_ISPName = ctk.CTkEntry(master=CollectionTab, width=200)
+    col_input_ISPName.pack()
+
     # Import files.
-    def handle_file_selection():
+    def col_handle_file_selection():
         # Open file selector, looking for text files.
-        filename = filedialog.askopenfilename(title="Select a file", filetypes=[("Text files", "*.txt")])
+        filepath = filedialog.askopenfilename(title="Select a file", filetypes=[("Text files", "*.txt")])
 
         # Update field with selection.
-        if filename:
-            input_siteList.delete(0, "end") # Clear previous selection.
-            input_siteList.insert(0, filename)
-            print(filename)
+        if filepath:
+            col_label_filename_text.set(os.path.basename(filepath)) # Expect the filename from the filepath.
+            col_data_file2.set(filepath) # Save the filepath.
+
 
     # Create label for file selection field.
-    label_siteList = ctk.CTkLabel(master=CollectionTab, text="Select File:")
-    label_siteList.pack()
-    # Create input field for site list file.
-    input_siteList = ctk.CTkEntry(master=CollectionTab, width=200, state="readonly")  # Set as read-only
-    input_siteList.pack()
+    col_label_siteList = ctk.CTkLabel(master=CollectionTab, text="Select File:")
+    col_label_siteList.pack()
+    # Create label for site list file.
+    col_label_filename = ctk.CTkLabel(master=CollectionTab, width=200, textvariable=col_label_filename_text)
+    col_label_filename.pack()
     # Create button to start file selection.
-    button_siteList = ctk.CTkButton(master=CollectionTab, text="Browse", command=handle_file_selection)
-    button_siteList.pack()
+    col_button_siteList = ctk.CTkButton(master=CollectionTab, text="Browse", command=col_handle_file_selection)
+    col_button_siteList.pack()
+
+    def col_run_collection():
+        temp = col_input_ISPName.get()
+        print("ISP Name: " + "../results/" + temp)
+        print(f"Result filename: {col_data_file2.get()}")
+        CalculateListOfDomains(col_data_file2.get(),col_input_ISPName.get())
+
+
+    # Create a button to start the collecting data.
+    col_button_start = ctk.CTkButton(master=CollectionTab, text="Scan", command=col_run_collection)
+    col_button_start.pack(padx=10, pady=10)
 
     # INTERPRET TAB
+    int_label_filename_text = ctk.StringVar(value="No File Selected!")
+
+    # Import files.
+    def int_handle_file_selection():
+        # Open file selector, looking for text files.
+        filepath = filedialog.askopenfilenames(title="Select a file", filetypes=[("Text files", "*.txt")])
+        filenames = "";
+        # Update field with selection.
+        if filepath:
+            for file in filepath:
+                filenames += os .path.basename(file) + "\n"
+            print(filenames)
+            int_label_filename_text.set(filenames) # Expect the filenames from the filepaths.
+        # print(filepath)
+
     # Create the second tab
     InterpretTab = tab_view.add("Interpret")
-    # Create elements for tab 2
-    label2 = ctk.CTkLabel(master=InterpretTab, text="This is tab 2")
-    label2.pack(pady=10)
-    button2 = ctk.CTkButton(master=InterpretTab, text="Button in Tab 2")
-    button2.pack()
+    # Create a scrollable frame to accomodate a large list of files.
+    int_scrollable_frame = ctk.CTkScrollableFrame(master=InterpretTab)
+    int_scrollable_frame.pack()
+    # Create a label for the list of files to be scanned.
+    int_label_filename = ctk.CTkLabel(master=int_scrollable_frame, textvariable=int_label_filename_text, justify="left")
+    int_label_filename.pack()
+    # Browse button to get files.
+    int_button_filename = ctk.CTkButton(master=int_scrollable_frame, text="Browse", command=int_handle_file_selection)
+    int_button_filename.pack()
+
+    # Create a button to start the interpreting data.
+    int_button_start = ctk.CTkButton(master=int_scrollable_frame, text="Interpret")
+    int_button_start.pack(padx=10, pady=10)
 
     # Start the Tkinter event loop.
     app.mainloop();
