@@ -92,13 +92,12 @@ class ISP_Domain_Results_Interpreter:
             list(dict.fromkeys(self.public_DNS_response_codes.get(dom))),
             self.printBlockPages(),
             self.blockingMethodAlgorithm(domain)],
-            '../results/collated_results_interpreted.csv')
+            '/results/collated_results_interpreted.csv')
 
 
     def dictOfAllDomainsOfAllISPs(self, domainFile, reason):
         dictionaryOfDomains = {}
-
-        with open('../data/' + domainFile) as fp:
+        with open(os.getcwd() + "/data/" + domainFile) as fp:
             Lines = fp.readlines()
         for name in self.list_of_domains:
             name = name.rstrip("\n")

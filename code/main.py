@@ -142,7 +142,7 @@ def readCSVToDomain(file_names):
     ISP_list = []
 
     for file in results_files:
-        with open(os.path.join('../results',file)) as csv_file:
+        with open(file) as csv_file:
             csv_reader = csv.reader(csv_file, delimiter=',')
             line_count = 0
             domainDict = {}
@@ -201,7 +201,7 @@ def getAllResponseCodes(ISP_List):
 
 def List_Of_Domains(domainFile):
     domain_list = []
-    with open('../data/' + domainFile) as fp:
+    with open(domainFile) as fp:
         Lines = fp.readlines()
     for line in Lines:
         line = line.rstrip("\n")
@@ -210,7 +210,7 @@ def List_Of_Domains(domainFile):
     return domain_list
 
 
-def writeCollatedResults(ISP_List,allResponseCodes):
+def writeCollatedResults(ISP_List,allResponseCodes,Domains_List):
     domain_response_codes = allResponseCodes.get('domain_response_codes')
     default_DNS_response_codes = allResponseCodes.get('default_DNS_response_codes')
     public_DNS_response_codes = allResponseCodes.get('public_DNS_response_codes')
@@ -223,16 +223,18 @@ def writeCollatedResults(ISP_List,allResponseCodes):
         #ALL_Other_ISPs.remove(isp)
 
         # Change the last part of this function to whichever file was used to create the data.
-        New_ISP_Domain_Results_Interpreter = ISP_Domain_Results_Interpreter(isp.name,isp,ISP_List,domain_response_codes,default_DNS_response_codes,public_DNS_response_codes, List_Of_Domains("30BannedSites_2020.txt"))
+        New_ISP_Domain_Results_Interpreter = ISP_Domain_Results_Interpreter(isp.name,isp,ISP_List,domain_response_codes,default_DNS_response_codes,public_DNS_response_codes, List_Of_Domains(Domains_List))
         New_ISP_Domain_Results_Interpreter.writeResults()
         #ALL_Other_ISPs.append(isp)
 
 
-def interpretResults(interpret_files):
+def interpretResults(interpret_files,Domains_List):
+    print("INTERPRETING DATA...")
     ISP_LIST = readCSVToDomain(interpret_files)
 
     allResponseCodes = getAllResponseCodes(ISP_LIST)
-    writeCollatedResults(ISP_LIST,allResponseCodes)
+    writeCollatedResults(ISP_LIST,allResponseCodes,Domains_List)
+    print("FINISHED INTERPRETING DATA")
 
 
 def runGUI():
@@ -248,8 +250,7 @@ def runGUI():
     tab_view.pack(padx=20, pady=20)
 
     # COLLECTION TAB
-    col_data_file = None
-    col_data_file2 = ctk.StringVar(value="")
+    col_data_file = ctk.StringVar(value="")
     col_label_filename_text = ctk.StringVar(value="No File Selected!")
 
     # Create the first tab.
@@ -269,7 +270,7 @@ def runGUI():
         # Update field with selection.
         if filepath:
             col_label_filename_text.set(os.path.basename(filepath)) # Expect the filename from the filepath.
-            col_data_file2.set(filepath) # Save the filepath.
+            col_data_file.set(filepath) # Save the filepath.
 
 
     # Create label for file selection field.
@@ -283,7 +284,7 @@ def runGUI():
     col_button_siteList.pack()
 
     def col_run_collection():
-        CalculateListOfDomains(col_data_file2.get(),os.getcwd()+"/results/"+col_input_ISPName.get()+".csv")
+        CalculateListOfDomains(col_data_file.get(),os.getcwd()+"/results/"+col_input_ISPName.get()+".csv")
 
 
     # Create a button to start the collecting data.
@@ -291,35 +292,76 @@ def runGUI():
     col_button_start.pack(padx=10, pady=10)
 
     # INTERPRET TAB
-    int_label_filename_text = ctk.StringVar(value="No File Selected!")
+    int_label_filename_text = ctk.StringVar(value="No File(s) Selected!")
+    int_label_Domains_List_text = ctk.StringVar(value="No File Selected!")
+    global int_list_of_files
+    global int_Domain_List_File
 
-    # Import files.
+    # Import Collected Data files.
     def int_handle_file_selection():
-        # Open file selector, looking for text files.
-        filepath = filedialog.askopenfilenames(title="Select a file", filetypes=[("Text files", "*.txt")])
+        # Open file selector, looking for csv files.
+        filepath = filedialog.askopenfilenames(title="Select a file", filetypes=[("CSV Files", "*.csv")])
         filenames = "";
+        global int_list_of_files 
+        int_list_of_files = filepath
         # Update field with selection.
         if filepath:
             for file in filepath:
-                filenames += os .path.basename(file) + "\n"
-            print(filenames)
+                filenames += os.path.basename(file) + "\n"
             int_label_filename_text.set(filenames) # Expect the filenames from the filepaths.
-        # print(filepath)
+
+    
+    # Import Domain List file.
+    def int_handle_file_selection_Domain_File():
+        # Open file selector, looking for a txt file.
+        filepath = filedialog.askopenfilename(title="Select a file", filetypes=[("Text Files", "*.txt")])
+        global int_Domain_List_File
+        int_Domain_List_File = filepath
+        if filepath:
+            int_label_Domains_List_text.set(os.path.basename(filepath))
+
 
     # Create the second tab
     InterpretTab = tab_view.add("Interpret")
     # Create a scrollable frame to accomodate a large list of files.
     int_scrollable_frame = ctk.CTkScrollableFrame(master=InterpretTab)
     int_scrollable_frame.pack()
+    # Header to select a domain list file.
+    int_info_Domains_List = ctk.CTkLabel(master=int_scrollable_frame, text="Select the file used to make the results:", justify="left")
+    int_info_Domains_List.configure(wraplength=200)
+    int_info_Domains_List.pack()
+    # Create a label for the file used to create the collected data.
+    int_label_Domains_List_filename = ctk.CTkLabel(master=int_scrollable_frame, textvariable=int_label_Domains_List_text, justify="left")
+    int_label_Domains_List_filename.configure(wraplength=200)
+    int_label_Domains_List_filename.pack()
+    # Browse button to get file.
+    int_button_filename = ctk.CTkButton(master=int_scrollable_frame, text="Browse", command=int_handle_file_selection_Domain_File)
+    int_button_filename.pack(padx=10, pady=10)
+    # Header to select a domain list file.
+    int_info_Results_Files = ctk.CTkLabel(master=int_scrollable_frame, text="Select the files to Interpret:", justify="left")
+    int_info_Results_Files.configure(wraplength=200)
+    int_info_Results_Files.pack()
     # Create a label for the list of files to be scanned.
     int_label_filename = ctk.CTkLabel(master=int_scrollable_frame, textvariable=int_label_filename_text, justify="left")
+    int_label_filename.configure(wraplength=200)
     int_label_filename.pack()
     # Browse button to get files.
     int_button_filename = ctk.CTkButton(master=int_scrollable_frame, text="Browse", command=int_handle_file_selection)
     int_button_filename.pack()
 
+    def int_run_collection():
+        Domains_List = int_Domain_List_File
+        file_list = list(int_list_of_files)  # Create a list copy
+        for i in range(len(file_list)):
+            # file_list[i] = os.path.basename(file_list[i])
+            print(f"File at index {i}: {file_list[i]}")
+        print(file_list)
+        print(int_Domain_List_File)
+        interpretResults(file_list,Domains_List)
+
+
     # Create a button to start the interpreting data.
-    int_button_start = ctk.CTkButton(master=int_scrollable_frame, text="Interpret")
+    int_button_start = ctk.CTkButton(master=int_scrollable_frame, text="Interpret", command=int_run_collection)
     int_button_start.pack(padx=10, pady=10)
 
     # Start the Tkinter event loop.
