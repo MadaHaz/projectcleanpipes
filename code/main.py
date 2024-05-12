@@ -283,10 +283,7 @@ def runGUI():
     col_button_siteList.pack()
 
     def col_run_collection():
-        temp = col_input_ISPName.get()
-        print("ISP Name: " + "../results/" + temp)
-        print(f"Result filename: {col_data_file2.get()}")
-        CalculateListOfDomains(col_data_file2.get(),col_input_ISPName.get())
+        CalculateListOfDomains(col_data_file2.get(),os.getcwd()+"/results/"+col_input_ISPName.get()+".csv")
 
 
     # Create a button to start the collecting data.
