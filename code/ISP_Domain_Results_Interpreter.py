@@ -72,12 +72,12 @@ class ISP_Domain_Results_Interpreter:
 
         return False
 
-    def writeResults(self):
+    def writeResults(self, Collated_Results_Filename):
         for dom in self.ISP.domains:
             domain = self.ISP.domains.get(dom)
 
             csvHeaders = ["File Name","Domain Name","Private_IP_Found_In_Default_DNS","Private_IP_Found_In_Public_DNS","Default DNS IP's found in Public DNS","Domain Doesn't Work but IP Does","Response Code","Default DNS IP Address","Public DNS Response Codes","All Domain Response Codes","All Default DNS Response Codes","All Public DNS Response Codes","","Method"]
-            writeToCSVMethod(csvHeaders, '/results/collated_results_interpreted2.csv')
+            writeToCSVMethod(csvHeaders, f'/results/{Collated_Results_Filename}.csv')
 
             writeToCSVMethod([self.name,
             domain.domain,
@@ -93,7 +93,7 @@ class ISP_Domain_Results_Interpreter:
             list(dict.fromkeys(self.public_DNS_response_codes.get(dom))),
             self.printBlockPages(),
             self.blockingMethodAlgorithm(domain)],
-            '/results/collated_results_interpreted2.csv')
+            f'/results/{Collated_Results_Filename}.csv')
 
 
     def dictOfAllDomainsOfAllISPs(self, domainFile, reason):

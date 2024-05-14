@@ -214,7 +214,7 @@ def List_Of_Domains(domainFile):
     return domain_list
 
 
-def writeCollatedResults(ISP_List,allResponseCodes,Domains_List):
+def writeCollatedResults(ISP_List,allResponseCodes,Domains_List,Collated_Results_Filename):
     domain_response_codes = allResponseCodes.get('domain_response_codes')
     default_DNS_response_codes = allResponseCodes.get('default_DNS_response_codes')
     public_DNS_response_codes = allResponseCodes.get('public_DNS_response_codes')
@@ -228,16 +228,16 @@ def writeCollatedResults(ISP_List,allResponseCodes,Domains_List):
 
         # Change the last part of this function to whichever file was used to create the data.
         New_ISP_Domain_Results_Interpreter = ISP_Domain_Results_Interpreter(isp.name,isp,ISP_List,domain_response_codes,default_DNS_response_codes,public_DNS_response_codes, List_Of_Domains(Domains_List))
-        New_ISP_Domain_Results_Interpreter.writeResults()
+        New_ISP_Domain_Results_Interpreter.writeResults(Collated_Results_Filename)
         #ALL_Other_ISPs.append(isp)
 
 
-def interpretResults(interpret_files,Domains_List):
+def interpretResults(interpret_files,Domains_List,Collated_Results_Filename):
     print("\nINTERPRETING DATA...\n")
     ISP_LIST = readCSVToDomain(interpret_files)
 
     allResponseCodes = getAllResponseCodes(ISP_LIST)
-    writeCollatedResults(ISP_LIST,allResponseCodes,Domains_List)
+    writeCollatedResults(ISP_LIST,allResponseCodes,Domains_List,Collated_Results_Filename)
     print("\nFINISHED INTERPRETING DATA\n")
 
 
@@ -355,8 +355,10 @@ def runGUI():
 
     def int_run_collection():
         Domains_List = int_Domain_List_File
-        file_list = list(int_list_of_files)  # Create a list copy
-        interpretResults(file_list,Domains_List)
+        file_list = list(int_list_of_files)  # Create a list copy.
+        Collated_Results_Filename = int_label_Domains_List_text.get().rsplit('.', 1)[0] # Get the name of the Domains List File.
+        Collated_Results_Filename += "_CRF"
+        interpretResults(file_list,Domains_List,Collated_Results_Filename)
 
 
     # Create a button to start the interpreting data.
