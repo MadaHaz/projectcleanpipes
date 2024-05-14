@@ -112,7 +112,7 @@ def writeObjectToCSV(obj, writeFile):
 
 
 def CalculateListOfDomains(openFile, writeFile):
-    print("COLLECTING DATA...")
+    print("\nCOLLECTING DATA...\n")
     websiteList = []
     with open(openFile) as fp:
         Lines = fp.readlines()
@@ -134,7 +134,7 @@ def CalculateListOfDomains(openFile, writeFile):
         writeObjectToCSV(obj, writeFile)
 
     
-    print("FINISHED COLLECTING DATA")
+    print("\nFINISHED COLLECTING DATA\n")
 
 
 def readCSVToDomain(file_names):
@@ -229,12 +229,12 @@ def writeCollatedResults(ISP_List,allResponseCodes,Domains_List):
 
 
 def interpretResults(interpret_files,Domains_List):
-    print("INTERPRETING DATA...")
+    print("\nINTERPRETING DATA...\n")
     ISP_LIST = readCSVToDomain(interpret_files)
 
     allResponseCodes = getAllResponseCodes(ISP_LIST)
     writeCollatedResults(ISP_LIST,allResponseCodes,Domains_List)
-    print("FINISHED INTERPRETING DATA")
+    print("\nFINISHED INTERPRETING DATA\n")
 
 
 def runGUI():
