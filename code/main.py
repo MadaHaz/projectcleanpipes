@@ -243,14 +243,14 @@ def interpretResults(interpret_files,Domains_List,Collated_Results_Filename):
 
 def runGUI():
     # SETUP TKINTER 
-    ctk.set_appearance_mode("light") # Modes: "system" (default), "dark", "light"
-    ctk.set_default_color_theme("blue") # Themes: "blue" (default), "green", "dark-blue"
+    ctk.set_appearance_mode("dark") # Modes: "system" (default), "dark", "light"
+    ctk.set_default_color_theme("dark-blue") # Themes: "blue" (default), "green", "dark-blue"
     app = ctk.CTk()
-    app.geometry("400x300") # Set the size.
+    app.geometry("400x450") # Set the size.
     app.title('Clean Pipes GUI') # Set the name.
 
     # Create the tab view
-    tab_view = ctk.CTkTabview(app)
+    tab_view = ctk.CTkTabview(app, height=400)
     tab_view.pack(padx=20, pady=20)
 
     # COLLECTION TAB
@@ -328,7 +328,7 @@ def runGUI():
     # Create the second tab
     InterpretTab = tab_view.add("Interpret")
     # Create a scrollable frame to accomodate a large list of files.
-    int_scrollable_frame = ctk.CTkScrollableFrame(master=InterpretTab)
+    int_scrollable_frame = ctk.CTkScrollableFrame(master=InterpretTab, height=350)
     int_scrollable_frame.pack()
     # Header to select a domain list file.
     int_info_Domains_List = ctk.CTkLabel(master=int_scrollable_frame, text="Select the file used to make the results:", justify="left")
