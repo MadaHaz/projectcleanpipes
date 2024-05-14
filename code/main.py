@@ -105,6 +105,10 @@ def checkIP():
 
 
 def writeObjectToCSV(obj, writeFile):
+    csvHeaders = ["Domain","Response Code","DNS Server","DNS Resolved Ips","DNS IP Response Codes","Traceroute to domain","Number of hops to domain","AARC DNS Ips","Optus DNS Ips","Google DNS Ips","Cloudflare DNS Ips","AARC DNS Response Codes","Optus DNS Response Codes","Google DNS Response Codes","Cloudflare DNS Response Codes"]
+
+    writeToCSVMethod(csvHeaders, writeFile)
+
     resultsList = [obj.domain, obj.responseCode, obj.ISP_DNS, obj.ISP_DNS_IPS, obj.ISP_IP_Response_Code ,obj.Traceroute , obj.Hops_to_Domain ,  obj.AARC_DNS_IPs, obj.Optus_DNS_IPs, obj.Google_DNS, obj.Cloudflare_DNS, obj.AARC_DNS_Response_Code, obj.Optus_DNS_Response_Code, obj.Google_DNS_Response_Code, obj.Cloudflare_DNS_Response_Code,
     obj.domainBlockPage, obj.AARC_DNS_Block_Page, obj.Optus_DNS_Block_Page, obj.Google_DNS_Block_Page, obj.Cloudflare_DNS_Block_Page, obj.domainCloudFlareBlockPage, obj.AARC_DNS_Cloudflare_Block_Page, obj.Optus_DNS_Cloudflare_Block_Page, obj.Google_DNS_Cloudflare_Block_Page, obj.Cloudflare_DNS_Cloudflare_Block_Page, obj.Default_DNS_Block_Page, obj.Default_DNS_Cloudflare_Block_Page]
 
