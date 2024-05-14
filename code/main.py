@@ -352,11 +352,6 @@ def runGUI():
     def int_run_collection():
         Domains_List = int_Domain_List_File
         file_list = list(int_list_of_files)  # Create a list copy
-        for i in range(len(file_list)):
-            # file_list[i] = os.path.basename(file_list[i])
-            print(f"File at index {i}: {file_list[i]}")
-        print(file_list)
-        print(int_Domain_List_File)
         interpretResults(file_list,Domains_List)
 
 
