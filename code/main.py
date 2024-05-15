@@ -272,8 +272,8 @@ def main():
     """
     CalculateListOfDomains(
         "../data/30BannedSites_2020.txt",
-        "../results/BS_Telstra_29Apr_2024.csv"
-        )
+        "../results/BS_Telstra_15May_2024.csv"
+    )
     """
     # Collect data on 15 Top Sites (TS).
     # Output file format is TS_ISPNAME_DAYMONTH_YEAR.csv,
@@ -281,10 +281,9 @@ def main():
     """
     CalculateListOfDomains(
         "../data/15MostVisitedSites_April_2024.txt",
-        "../results/TS_AussieBroadband_25Apr_2024.csv"
-        )
+        "../results/TS_Telstra_15May_2024.csv"
+    )
     """
-
     # Interpret the results.
     # Place the output files from the previous step here. Both BS and TS
     # IMPORTANT, Make sure to change the filename in line 267 to whichever

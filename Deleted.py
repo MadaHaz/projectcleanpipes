@@ -220,6 +220,9 @@ def getTraceRouteList(host):
         res.nameservers = [ '8.8.8.8', '2001:4860:4860::8888',
                             '8.8.4.4', '2001:4860:4860::8844' ]
         r = res.query('example.org', 'a')
+
+    def resolveIPFromDNS(hostname, DNSList):
+        # soa_record = dns_query.soa_lookup(domain)
 """
 
 # ISP.py
