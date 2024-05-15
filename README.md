@@ -26,12 +26,13 @@ projectcleanpipes
 
 ## How To Install
 1. Open a terminal window and navigate to the base directory of the project `projectcleanpipes`.
-2. Run the command `pip install requests bs4 scapy dnspython nslookup pydnsbl
-` to install all dependencies.
+2. Run the command `pip install requests bs4 scapy dnspython nslookup pydnsbl customtkinter` to install all dependencies.
 3. Finished.
 
 ## How To Run
 To run the program you must first decide if you are running it in **Data Collection** or **Data Interpret** mode.
+
+The program can also be ran in a GUI mode. (More at the bottom!)
 
 **Data Collection Mode:**
 1. Open `main.py` inside the `code` directory.
@@ -62,5 +63,17 @@ Format for multiple, `interpret_files = ['Optus_25Mar.csv','AARC_12Apr.csv']`.
 Format for single, `interpret_files = ['Optus_25Mar.csv']`.
 
 4. Open a terminal window and go into the `code` folder containing `main.py`.
-5. Run the command `python main.py`.
+5. For Windows & Linux, run the command `python main.py`. For MacOS, run `python3 main.py`.
 6. Results will be printed to the terminal and output to a file called `collated_results_interpreted.csv` in the `results` folder.
+
+**GUI MODE**
+> To run in GUI mode, you must download the GUI branch of this repo.
+
+1. For Windows & Linux, run the command `python main.py`. For MacOS, run `python3 main.py`.
+2. Select either Collection or Interpret mode from the tab selector.
+3. Fill in the required information and execute the mode.
+4. Results are found within the `results` folder.
+
+> For `Collection Mode`, the result is called `<ISP_NAME>.csv`.
+
+> For `Interpret Mode`, the result is called `<SITE_LIST>_CRF.csv`.
