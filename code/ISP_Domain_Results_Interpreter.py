@@ -1,3 +1,4 @@
+import os
 from CSV_Methods import writeToCSVMethod
 from website_functions import (
     isIPPrivate,
@@ -68,9 +69,25 @@ class ISP_Domain_Results_Interpreter:
                     return any_ISP_Resolved_IP_Is_Private
         return any_ISP_Resolved_IP_Is_Private
 
-    def writeResults(self):
+    def writeResults(self, Collated_Results_Filename):
         for dom in self.ISP.domains:
             domain = self.ISP.domains.get(dom)
+            csvHeaders = [
+                "File Name",
+                "Domain Name",
+                "Private_IP_Found_In_Default_DNS",
+                "Private_IP_Found_In_Public_DNS",
+                "Default DNS IP's found in Public DNS",
+                "Domain Doesn't Work but IP Does",
+                "Response Code",
+                "Default DNS IP Address",
+                "Public DNS Response Codes",
+                "All Domain Response Codes",
+                "All Default DNS Response Codes",
+                "All Public DNS Response Codes",
+                "",
+                "Method"]
+            writeToCSVMethod(csvHeaders, f'/results/{Collated_Results_Filename}.csv')
             writeToCSVMethod(
                 [
                     self.name,
@@ -99,12 +116,13 @@ class ISP_Domain_Results_Interpreter:
                     self.printBlockPages(),
                     self.blockingMethodAlgorithm(domain)
                 ],
-                '../results/collated_results_interpreted.csv'
+                f'/results/{Collated_Results_Filename}.csv'
             )
 
     def dictOfAllDomainsOfAllISPs(self, domainFile, reason):
         dictionaryOfDomains = {}
-        with open('../data/' + domainFile) as fp:
+        filepath = os.getcwd().replace('\\code', '')
+        with open(filepath + '/data/' + domainFile) as fp:
             # Lines =
             fp.readlines()
         for name in self.list_of_domains:
