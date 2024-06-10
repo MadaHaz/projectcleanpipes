@@ -30,49 +30,8 @@ projectcleanpipes
 3. Finished.
 
 ## How To Run
-To run the program you must first decide if you are running it in **Data Collection** or **Data Interpret** mode.
-
-The program can also be ran in a GUI mode. (More at the bottom!)
-
-**Data Collection Mode:**
-1. Open `main.py` inside the `code` directory.
-2. In the `main` function, uncomment the function, `CalculateListOfDomains()` and comment out the function `interpretResults()`.
-3. `CalculateListOfDomains(INPUT, OUTPUT)` takes two values, an `INPUT` which is the list of sites you wish to scan and an `OUTPUT`, the file to store the results in.
-
-**NOTE**
-> The `INPUT` file is stored in the **data** folder.
-> 
-> A correct `INPUT` would be, `"../data/INPUT_FILE.txt"`.
-
-> The `OUTPUT` file is stored in the **results** folder.
-> 
-> A correct `OUTPUT` would be, `"../results/OUTPUT_FILE.csv"`.
-
-4. Open a terminal window and go into the `code` folder containing `main.py`.
-5. Run the command `python main.py` and wait for the results to be compiled.
-
-**Data Interpret Mode:**
-1. Open `main.py` inside the `code` directory.
-2. In the `main` function, uncomment the function, `interpretResults()` and comment out the function `CalculateListOfDomains()`.
-3. The `interpretResults(interpret_files)` takes a single input, `interpret_files`, this is a list of files to be read.
-
-**NOTE**
-> The `interpret_files` value is a list of files. The value is declared in the main function.
-> 
-> A correct `interpret_files` would be, `['Optus_25Mar.csv','AARC_12Apr.csv']`.
-
-> You can choose how many files to interpret at once.
-> 
-> Format for multiple, `interpret_files = ['Optus_25Mar.csv','AARC_12Apr.csv']`.
-> 
-> Format for single, `interpret_files = ['Optus_25Mar.csv']`.
-
-4. Open a terminal window and go into the `code` folder containing `main.py`.
-5. For Windows & Linux, run the command `python main.py`. For MacOS, run `python3 main.py`.
-6. Results will be printed to the terminal and output to a file called `collated_results_interpreted.csv` in the `results` folder.
-
-**GUI MODE**
-> To run in GUI mode, you must download the GUI branch of this repo.
+**RUN GUI**
+> ⚠ THE TERMINAL WINDOW MUST BE OPENED TO THE `CODE` directory!
 
 1. For Windows & Linux, run the command `python main.py`. For MacOS, run `python3 main.py`.
 2. Select either Collection or Interpret mode from the tab selector.
@@ -82,3 +41,26 @@ The program can also be ran in a GUI mode. (More at the bottom!)
 > For `Collection Mode`, the result is called `<ISP_NAME>.csv`.
 > 
 > For `Interpret Mode`, the result is called `<SITE_LIST>_CRF.csv`.
+
+**Data Collection Mode:**
+1. The progam opens in **Collection Mode**.
+2. Enter in the name of the ISP being tested. (No need to include the `.csv`)
+
+> It is reccomended to use a naming format, here is ours.
+>
+> `<ISPNAME>_<DAYMONTH>_<YEAR>.csv`, an example is, `AussieBroadband_10May_2024.csv`.
+
+3. Input the file which lists the sites to be scanned.
+4. Run the scan.
+5. Results are found within the `results` folder.
+
+**Data Interpret Mode:**
+1. The progam opens in **Collection Mode**, switch to **Interpret Mode** by selecting it from the tabs at the top.
+2. Input the file used to make the collection results, the site list file from **Data Collection Mode**, Step 4.
+3. Input the results files to be interpreted.
+4. Run the interpreter.
+5. Results are found within the `results` folder.
+
+> The results file will be in the following format:
+>
+> `<SITELIST FILENAME>_CRF.csv`
